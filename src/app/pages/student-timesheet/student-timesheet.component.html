@@ -1,0 +1,32 @@
+<div class="container mt-5">
+  <div class="row ">
+    <div class="col-md-6 mb-md-4 mb-2">
+      <input pInputText [(ngModel)]="studentId" name="studentId" placeholder="Enter Student ID" class="w-100" />
+    </div>
+    <div class="col-md-6 mb-4">
+      <button pButton label="Get Timesheet" class="p-button-primary w-100" (click)="loadData()"></button>
+    </div>
+  </div>
+
+  <p-table [value]="schedule" [paginator]="true" [rows]="5" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Subject</th>
+        <th>Day</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-row>
+      <tr [ngClass]="{
+          'table-success': isCurrentClass(row),
+          'table-warning': isNextClass(row)
+        }">
+        <td>{{ row.subject }}</td>
+        <td>{{ row.day }}</td>
+        <td>{{ row.startTime }}</td>
+        <td>{{ row.endTime }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
